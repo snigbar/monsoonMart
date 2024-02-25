@@ -1,0 +1,1 @@
+echo \"🌟🐺 Running pre-commit checks... Husky 🚀🐺\" && npx lint-staged
