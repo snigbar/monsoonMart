@@ -33,7 +33,12 @@ module.exports = {
     "no-unused-expressions": "error",
     "prefer-const": "error",
     "no-console": "warn",
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     "arrow-body-style": ["error", "as-needed"],
     "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/no-var-requires": 1,
