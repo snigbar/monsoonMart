@@ -91,8 +91,8 @@ export default function Login() {
           </Button>
         </form>
         <p className="text-gray-800 text-sm mt-3">
-          Already have an account{" "}
-          <Link to="/register" className="font-bold">
+          Don't have an account?
+          <Link to="/register" className="font-bold ml-1">
             Register
           </Link>
         </p>

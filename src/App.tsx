@@ -3,6 +3,7 @@ import Login from "./pages/Auth/Login";
 import HomePage from "./pages/HomePage/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
+import Register from "./pages/Auth/Register";
 
 function App() {
   return (
@@ -17,14 +18,24 @@ function App() {
             </MainLayout>
           }
         />
-      </Routes>
-      {/* Auth - login */}
-      <Routes>
+
+        {/* Auth - login */}
+
         <Route
           path="/login"
           element={
             <AuthLayout>
               <Login />
+            </AuthLayout>
+          }
+        />
+        {/* Auth - register */}
+
+        <Route
+          path="/register"
+          element={
+            <AuthLayout>
+              <Register></Register>
             </AuthLayout>
           }
         />
