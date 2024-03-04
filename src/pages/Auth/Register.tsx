@@ -1,12 +1,6 @@
 import { z } from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
-import {
-  CardTitle,
-  CardDescription,
-  CardHeader,
-  CardContent,
-  Card,
-} from "@/components/ui/card";
+import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -108,9 +102,6 @@ export default function Register() {
           <CardTitle className="text-2xl text-center font-bold">
             Create an account
           </CardTitle>
-          <CardDescription className="text-center">
-            Enter your email and password to sign up
-          </CardDescription>
         </CardHeader>
         <CardContent>
           <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
