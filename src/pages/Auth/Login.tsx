@@ -12,12 +12,18 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
+import { useLoginMutation } from "@/store/slices/userSlice/user.api";
+import { TLoginData } from "@/store/store.interfaces";
+import { useToast } from "@/components/ui/use-toast";
+import { ApiErrorHadler } from "@/lib/utils";
 
 export default function Login() {
   const [showPass, setShowPass] = useState(false);
+
+  const { toast } = useToast();
   const LoginSchema = z.object({
     email: z.string().email(),
     password: z
@@ -34,9 +40,26 @@ export default function Login() {
     formState: { errors },
   } = useForm<LoginSchemaType>({ resolver: zodResolver(LoginSchema) });
 
-  const onSubmit: SubmitHandler<LoginSchemaType> = (data) => {
-    console.log(data);
+  const [login, { data, isSuccess, error }] = useLoginMutation();
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<LoginSchemaType> = async (data: TLoginData) => {
+    await login(data);
   };
+
+  useEffect(() => {
+    if (data && isSuccess) {
+      toast({
+        title: `Welcome, ${data.data?.firstName}`,
+        description: data.message || "login Successful",
+      });
+      navigate("/", { replace: true });
+    }
+    // hadle Error
+    if (error) {
+      ApiErrorHadler(error);
+    }
+  }, [isSuccess, error]);
 
   return (
     <Card className="mx-auto max-w-md shadow-sm">
