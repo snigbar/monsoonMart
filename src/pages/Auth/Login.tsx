@@ -48,13 +48,23 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (data && isSuccess) {
+    if (data && isSuccess && data.data?.isVerified) {
       toast({
         variant: "success",
         title: `Welcome, ${data.data?.firstName}`,
         description: data.message || "login Successful",
       });
       navigate("/", { replace: true });
+    }
+
+    if (data && isSuccess && !data.data?.isVerified) {
+      toast({
+        variant: "warn",
+        title: "Verify Your Account",
+        description: data.message || "verify your account",
+      });
+
+      navigate(`/activate/${data.data?.verificationToken}/${data.data?._id}`);
     }
     // hadle Error
     if (error) {

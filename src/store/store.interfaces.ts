@@ -27,6 +27,7 @@ export interface TUser {
   isDeleted: boolean;
   createdAt: Date;
   updatedAt: Date;
+  verificationToken?: string;
 }
 
 export type TUserCreationResponse = {

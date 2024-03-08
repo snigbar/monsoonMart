@@ -50,7 +50,7 @@ export default function VerifyUserPage() {
         title: `validation successful`,
         description: data?.message || "your account has been validated",
       });
-      navigate("/");
+      navigate("/", { replace: true });
     }
     // revalidation success
     if (revalidteData && isRevalidationSuccess) {
