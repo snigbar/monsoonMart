@@ -8,6 +8,13 @@ export interface TCreateUserFormData {
   profileImage: FileList;
 }
 
+export type TErrorResponse = {
+  success: boolean;
+  status: number;
+  message: string;
+  error: Error;
+};
+
 export interface TUser {
   _id: string;
   firstName: string;

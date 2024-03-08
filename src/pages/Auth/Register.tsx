@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { ChangeEvent, useEffect, useState } from "react";
 import { CameraIcon, EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useCreateUserMutation } from "@/store/slices/userSlice/user.api";
+import { useCreateUserMutation } from "@/store/slices/AuthSlice/auth.api";
 import { TCreateUserFormData } from "@/store/store.interfaces";
 import { ApiErrorHadler } from "@/lib/utils";
 import { useToast } from "@/components/ui/use-toast";
@@ -115,7 +115,6 @@ export default function Register() {
     await createUser(formData as unknown as TCreateUserFormData);
   };
 
-  console.log(data, isLoading, isSuccess);
   // handle response
   useEffect(() => {
     if (data && isSuccess) {

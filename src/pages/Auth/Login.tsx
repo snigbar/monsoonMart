@@ -15,7 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
-import { useLoginMutation } from "@/store/slices/userSlice/user.api";
+import { useLoginMutation } from "@/store/slices/AuthSlice/auth.api";
 import { TLoginData } from "@/store/store.interfaces";
 import { useToast } from "@/components/ui/use-toast";
 import { ApiErrorHadler } from "@/lib/utils";

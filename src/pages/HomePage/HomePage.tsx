@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks/hooks";
-import { authenticate } from "@/store/slices/userSlice/user.slice";
+import { authenticate } from "@/store/slices/AuthSlice/auth.slice";
 
 export default function HomePage() {
   const isAuhthenticated = useAppSelector(
