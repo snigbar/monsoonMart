@@ -1,10 +1,12 @@
-export type TCreateUserFormDAta = {
+export interface TCreateUserFormData {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  profileImage: File;
-};
+  confirmPassword?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  profileImage: FileList;
+}
 
 export interface TUser {
   _id: string;

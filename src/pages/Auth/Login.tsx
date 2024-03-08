@@ -50,6 +50,7 @@ export default function Login() {
   useEffect(() => {
     if (data && isSuccess) {
       toast({
+        variant: "success",
         title: `Welcome, ${data.data?.firstName}`,
         description: data.message || "login Successful",
       });

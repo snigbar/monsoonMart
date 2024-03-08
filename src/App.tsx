@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import Register from "./pages/Auth/Register";
+import VerifyUserPage from "./pages/Auth/VerifyUserPage";
 
 function App() {
   return (
@@ -36,6 +37,15 @@ function App() {
           element={
             <AuthLayout>
               <Register></Register>
+            </AuthLayout>
+          }
+        />
+
+        <Route
+          path="/activate/:activationToken/:id"
+          element={
+            <AuthLayout>
+              <VerifyUserPage></VerifyUserPage>
             </AuthLayout>
           }
         />

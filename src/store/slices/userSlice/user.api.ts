@@ -1,16 +1,17 @@
 import { baseApi } from "@/store/api/baseApi";
 import {
-  TCreateUserFormDAta,
+  TCreateUserFormData,
   TLoginData,
   TUserCreationResponse,
 } from "@/store/store.interfaces";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    createUser: builder.mutation<TUserCreationResponse, TCreateUserFormDAta>({
+    createUser: builder.mutation<TUserCreationResponse, TCreateUserFormData>({
       query: (userData) => ({
         url: "users/create-user",
         method: "POST",
+        credentials: "include",
         body: userData,
       }),
     }),

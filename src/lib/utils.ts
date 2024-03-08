@@ -22,11 +22,16 @@ export const ApiErrorHadler = (
     });
   }
   // for  SerializedError
-  if ("error" in error) {
+  else if ("error" in error) {
     toast({
       variant: "destructive",
       title: error.status.toString(),
       description: error.error.toString(),
+    });
+  } else {
+    toast({
+      variant: "destructive",
+      title: "Something went wrong",
     });
   }
 };
