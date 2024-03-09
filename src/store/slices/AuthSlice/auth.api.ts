@@ -3,6 +3,7 @@ import {
   TCreateUserFormData,
   TLoginData,
   TUserCreationResponse,
+  TresetPasswordPayload,
 } from "@/store/store.interfaces";
 
 const userApi = baseApi.injectEndpoints({
@@ -48,6 +49,26 @@ const userApi = baseApi.injectEndpoints({
         body: { id },
       }),
     }),
+
+    forgotPassword: builder.mutation<TUserCreationResponse, { email: string }>({
+      query: (data) => ({
+        url: "auth/forgot-password",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    changePassword: builder.mutation<
+      TUserCreationResponse,
+      TresetPasswordPayload
+    >({
+      query: (data) => ({
+        url: "auth/reset-password",
+        method: "POST",
+        credentials: "include",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -56,4 +77,6 @@ export const {
   useLoginMutation,
   useVerifyUserMutation,
   useRevalidateMutation,
+  useForgotPasswordMutation,
+  useChangePasswordMutation,
 } = userApi;

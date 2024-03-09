@@ -7,7 +7,6 @@ export default function HomePage() {
   );
 
   const dispatch = useAppDispatch();
-  console.log(isAuhthenticated);
 
   return (
     <div>

@@ -124,12 +124,13 @@ export default function Login() {
             Login
           </Button>
         </form>
-        <p className="text-gray-800 text-sm mt-3">
-          Don't have an account?
-          <Link to="/register" className="font-bold ml-1">
-            Register
-          </Link>
-        </p>
+
+        <Link
+          to="/forgot-password"
+          className="font-bold ml-1 text-gray-800 text-sm mt-3"
+        >
+          Forgot Password?
+        </Link>
       </CardContent>
     </Card>
   );

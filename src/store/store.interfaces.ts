@@ -41,3 +41,11 @@ export type TLoginData = {
   email: string;
   password: string;
 };
+
+export type TresetPasswordPayload = {
+  payload: {
+    id: string;
+    password: string;
+  };
+  token: string;
+};
