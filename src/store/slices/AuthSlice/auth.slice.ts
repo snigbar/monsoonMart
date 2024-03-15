@@ -1,14 +1,66 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  TUser,
+  TUserCreationResponse,
+  TUserRole,
+} from "@/store/store.interfaces";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+type TAuthState = {
+  user: null | TUser;
+  isVerified: boolean;
+  role: null | TUserRole;
+  isLoggedIn: boolean;
+};
+
+export const fetchUser = createAsyncThunk<TUserCreationResponse>(
+  "auth/fetchUser",
+  async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_SERVER_URL}/users/me`,
+      {
+        credentials: "include",
+      },
+    );
+    const result = await response.json();
+    return result;
+  },
+);
+
+const initialState: TAuthState = {
+  user: null,
+  isVerified: false,
+  role: null,
+  isLoggedIn: false,
+};
 export const userSlice = createSlice({
   name: "user",
-  initialState: {
-    isAuhthenticated: false,
-  },
+  initialState,
   reducers: {
     authenticate: (state) => {
-      state.isAuhthenticated = !state.isAuhthenticated;
+      state.isLoggedIn = !state.isLoggedIn;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUser.fulfilled, (state, action) => {
+      if (action.payload.data) {
+        state.user = action.payload.data;
+        state.isLoggedIn = true;
+        state.isVerified = action.payload.data.isVerified;
+        state.role = action.payload.data.role;
+      } else {
+        state.user = null;
+        state.isLoggedIn = false;
+        state.isVerified = false;
+        state.role = null;
+      }
+    });
+
+    builder.addCase(fetchUser.rejected, (state) => {
+      state.user = null;
+      state.isLoggedIn = false;
+      state.isVerified = false;
+      state.role = null;
+    });
   },
 });
 

@@ -22,19 +22,24 @@ export interface TUser {
   email: string;
   password: string;
   profileImage: string;
-  role: string;
+  role: TUserRole;
   isVerified: boolean;
   isDeleted: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
+  passwordChangedAt?: Date;
   verificationToken?: string;
 }
 
 export type TUserCreationResponse = {
-  statusCode: number;
   success: boolean;
   message: string;
   data?: TUser;
+};
+
+export type TUserLoggedOutResponse = {
+  success: boolean;
+  message: string;
 };
 
 export type TLoginData = {
@@ -49,3 +54,5 @@ export type TresetPasswordPayload = {
   };
   token: string;
 };
+
+export type TUserRole = "user" | "seller" | "admin";

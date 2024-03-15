@@ -3,6 +3,7 @@ import {
   TCreateUserFormData,
   TLoginData,
   TUserCreationResponse,
+  TUserLoggedOutResponse,
   TresetPasswordPayload,
 } from "@/store/store.interfaces";
 
@@ -25,6 +26,12 @@ const userApi = baseApi.injectEndpoints({
         credentials: "include",
         method: "POST",
         body: loginData,
+      }),
+    }),
+    logout: builder.mutation<TUserLoggedOutResponse, void>({
+      query: () => ({
+        url: "auth/login",
+        method: "POST",
       }),
     }),
     verifyUser: builder.mutation<
@@ -79,4 +86,5 @@ export const {
   useRevalidateMutation,
   useForgotPasswordMutation,
   useChangePasswordMutation,
+  useLogoutMutation,
 } = userApi;

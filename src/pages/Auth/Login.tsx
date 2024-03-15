@@ -19,6 +19,8 @@ import { useLoginMutation } from "@/store/slices/AuthSlice/auth.api";
 import { TLoginData } from "@/store/store.interfaces";
 import { useToast } from "@/components/ui/use-toast";
 import { ApiErrorHadler } from "@/lib/utils";
+import { useAppDispatch } from "@/store/hooks/hooks";
+import { fetchUser } from "@/store/slices/AuthSlice/auth.slice";
 
 export default function Login() {
   const [showPass, setShowPass] = useState(false);
@@ -42,6 +44,7 @@ export default function Login() {
 
   const [login, { data, isSuccess, error }] = useLoginMutation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<LoginSchemaType> = async (data: TLoginData) => {
     await login(data);
@@ -54,6 +57,7 @@ export default function Login() {
         title: `Welcome, ${data.data?.firstName}`,
         description: data.message || "login Successful",
       });
+      dispatch(fetchUser());
       navigate("/", { replace: true });
     }
 

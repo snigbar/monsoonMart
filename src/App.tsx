@@ -7,8 +7,18 @@ import Register from "./pages/Auth/Register";
 import VerifyUserPage from "./pages/Auth/VerifyUserPage";
 import { ForgotPasswordForm } from "./pages/Auth/ForgotPasswordForm";
 import ResetPasswordForm from "./pages/Auth/ResetPasswordForm";
+import { useAppDispatch } from "./store/hooks/hooks";
+import { useEffect } from "react";
+import { fetchUser } from "./store/slices/AuthSlice/auth.slice";
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    // Dispatch fetchUser on mount
+    dispatch(fetchUser());
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Routes>

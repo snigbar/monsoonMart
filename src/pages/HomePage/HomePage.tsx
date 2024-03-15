@@ -2,15 +2,13 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks/hooks";
 import { authenticate } from "@/store/slices/AuthSlice/auth.slice";
 
 export default function HomePage() {
-  const isAuhthenticated = useAppSelector(
-    (state) => state.user.isAuhthenticated,
-  );
+  const isAuhthenticated = useAppSelector((state) => state.auth.isLoggedIn);
 
   const dispatch = useAppDispatch();
 
   return (
     <div>
-      <p>authenticate: {isAuhthenticated.toString()}</p>
+      <p>isLoggedIn: {isAuhthenticated.toString()}</p>
       <button
         onClick={() => dispatch(authenticate())}
         className="p-2 bg-rose-200"
