@@ -30,8 +30,9 @@ const userApi = baseApi.injectEndpoints({
     }),
     logout: builder.mutation<TUserLoggedOutResponse, void>({
       query: () => ({
-        url: "auth/login",
+        url: "auth/logout",
         method: "POST",
+        credentials: "include",
       }),
     }),
     verifyUser: builder.mutation<

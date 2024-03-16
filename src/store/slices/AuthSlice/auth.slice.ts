@@ -39,6 +39,12 @@ export const userSlice = createSlice({
     authenticate: (state) => {
       state.isLoggedIn = !state.isLoggedIn;
     },
+    logOut: (state) => {
+      state.user = null;
+      state.isLoggedIn = false;
+      state.isVerified = false;
+      state.role = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUser.fulfilled, (state, action) => {
@@ -64,5 +70,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { authenticate } = userSlice.actions;
+export const { authenticate, logOut } = userSlice.actions;
 export default userSlice.reducer;

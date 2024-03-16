@@ -123,18 +123,23 @@ export default function Login() {
                 {errors.password.message}
               </span>
             )}
+            <Link
+              to="/forgot-password"
+              className="font-bold ml-1 text-gray-800 text-sm"
+            >
+              Forgot Password?
+            </Link>
           </div>
-          <Button className="w-full" type="submit">
+          <Button className="w-full mb-2" type="submit">
             Login
           </Button>
         </form>
-
-        <Link
-          to="/forgot-password"
-          className="font-bold ml-1 text-gray-800 text-sm mt-3"
-        >
-          Forgot Password?
-        </Link>
+        <p className="text-gray-800 text-sm mt-3">
+          Don't have an account?
+          <Link to="/register" className="font-bold ml-1">
+            Register
+          </Link>
+        </p>
       </CardContent>
     </Card>
   );

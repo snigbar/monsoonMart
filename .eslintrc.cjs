@@ -39,7 +39,6 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
-    "arrow-body-style": ["error", "as-needed"],
     "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/no-var-requires": 1,
   },
