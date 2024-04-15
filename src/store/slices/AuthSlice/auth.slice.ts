@@ -10,6 +10,7 @@ type TAuthState = {
   isVerified: boolean;
   role: null | TUserRole;
   isLoggedIn: boolean;
+  loading: boolean;
 };
 
 export const fetchUser = createAsyncThunk<TUserCreationResponse>(
@@ -31,6 +32,7 @@ const initialState: TAuthState = {
   isVerified: false,
   role: null,
   isLoggedIn: false,
+  loading: false,
 };
 export const userSlice = createSlice({
   name: "user",
@@ -44,6 +46,9 @@ export const userSlice = createSlice({
       state.isLoggedIn = false;
       state.isVerified = false;
       state.role = null;
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -70,5 +75,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { authenticate, logOut } = userSlice.actions;
+export const { authenticate, logOut, setLoading } = userSlice.actions;
 export default userSlice.reducer;

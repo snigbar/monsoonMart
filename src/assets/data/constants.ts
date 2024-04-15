@@ -8,15 +8,15 @@ export const navItems = [
     url: "/best-selling",
   },
   {
-    title: "Products",
-    url: "/products",
+    title: "Smart Phones",
+    url: "/smart-phones",
   },
   {
-    title: "Events",
-    url: "/events",
+    title: "Laptops",
+    url: "/laptops",
   },
   {
-    title: "FAQ",
-    url: "/faq",
+    title: "Best Deals",
+    url: "/best-deals",
   },
 ];

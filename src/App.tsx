@@ -10,6 +10,7 @@ import ResetPasswordForm from "./pages/Auth/ResetPasswordForm";
 import { useAppDispatch } from "./store/hooks/hooks";
 import { useEffect } from "react";
 import { fetchUser } from "./store/slices/AuthSlice/auth.slice";
+import BecomeSeller from "./pages/BecomeSeller/BecomeSeller";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -78,6 +79,17 @@ function App() {
             <AuthLayout>
               <VerifyUserPage></VerifyUserPage>
             </AuthLayout>
+          }
+        />
+
+        <Route
+          path="/become-seller"
+          element={
+            // <ProtectedRoute role={["user"]}>
+            <MainLayout>
+              <BecomeSeller></BecomeSeller>
+            </MainLayout>
+            // </ProtectedRoute>
           }
         />
       </Routes>

@@ -25,3 +25,5 @@ export const categories = [
   { name: "Drones and Accessories", imgSrc: drones },
   { name: "Others", imgSrc: others },
 ];
+
+export const accountType = ["saving account", "checking account"];

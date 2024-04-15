@@ -5,7 +5,7 @@ import { Categories } from "./Categories";
 const Navigationbar = () => {
   return (
     <div className="flex items-center justify-center w-full h-min py-4">
-      <div className="flex justify-between items-center w-3/5 text-base font-semibold">
+      <div className="flex justify-between items-center w-[70%] text-base font-semibold">
         <Categories></Categories>
         {navItems.map((val, idx) => (
           <Link to={val.url} key={idx}>
