@@ -7,13 +7,17 @@ import Register from "./pages/Auth/Register";
 import VerifyUserPage from "./pages/Auth/VerifyUserPage";
 import { ForgotPasswordForm } from "./pages/Auth/ForgotPasswordForm";
 import ResetPasswordForm from "./pages/Auth/ResetPasswordForm";
-import { useAppDispatch } from "./store/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "./store/hooks/hooks";
 import { useEffect } from "react";
 import { fetchUser } from "./store/slices/AuthSlice/auth.slice";
 import BecomeSeller from "./pages/BecomeSeller/BecomeSeller";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AddProduct from "./pages/seller/AddProduct/AddProduct";
+import { LoadingSpinner } from "./components/ui/spinner";
 
 function App() {
   const dispatch = useAppDispatch();
+  const loading = useAppSelector((state) => state.auth.loading);
 
   useEffect(() => {
     // Dispatch fetchUser on mount
@@ -22,6 +26,11 @@ function App() {
 
   return (
     <BrowserRouter>
+      {loading && (
+        <div className="h-full w-full bg-white/60 fixed z-50 flex justify-center items-center">
+          <LoadingSpinner className="h-16 w-16" />
+        </div>
+      )}
       <Routes>
         {/* homepage */}
         <Route
@@ -85,11 +94,22 @@ function App() {
         <Route
           path="/become-seller"
           element={
-            // <ProtectedRoute role={["user"]}>
-            <MainLayout>
-              <BecomeSeller></BecomeSeller>
-            </MainLayout>
-            // </ProtectedRoute>
+            <ProtectedRoute role={["user"]}>
+              <MainLayout>
+                <BecomeSeller></BecomeSeller>
+              </MainLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/add-product"
+          element={
+            <ProtectedRoute role={["user"]}>
+              <MainLayout>
+                <AddProduct></AddProduct>
+              </MainLayout>
+            </ProtectedRoute>
           }
         />
       </Routes>

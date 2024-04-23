@@ -13,9 +13,9 @@ import others from "../assets/categoriesIcons/others.png";
 
 export const categories = [
   { name: "Phones", imgSrc: phonesImg },
-  { name: "Laptops/Computers", imgSrc: laptops },
+  { name: "Laptops Computers", imgSrc: laptops },
   { name: "Accessories", imgSrc: accessories },
-  { name: "Headphones/Earphones", imgSrc: headphones },
+  { name: "Headphones Earphones", imgSrc: headphones },
   { name: "Wearable Tech", imgSrc: watches },
   { name: "Gaming", imgSrc: gaming },
   { name: "Cameras and Photography", imgSrc: cameras },

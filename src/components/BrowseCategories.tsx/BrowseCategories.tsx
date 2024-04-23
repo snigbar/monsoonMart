@@ -10,7 +10,7 @@ interface TBrowseCategories {
 
 const CategoriesCard = ({ name, imgSrc, total }: TBrowseCategories) => {
   return (
-    <Link to={`/categories/${name}`}>
+    <Link to={`/categories/${name.split(" ").join("-")}`}>
       <div className="rounded-md shadow-sm bg-white px-4 py-2 flex justify-start items-center gap-4 border w-64 md:w-80">
         {/* imgSrc */}
         <img src={imgSrc} className="h-12 w-12" />

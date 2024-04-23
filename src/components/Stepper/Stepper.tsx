@@ -21,7 +21,7 @@ const Stepper = ({ step, submitted }: StepperProps) => {
               "bg-primary text-white border-none": step >= 1,
             })}
           >
-            <p className="mt-0">
+            <p className="mt-1">
               {step === 1 ? (
                 1
               ) : (
@@ -35,7 +35,7 @@ const Stepper = ({ step, submitted }: StepperProps) => {
               "bg-primary text-white border-none": step > 1,
             })}
           >
-            <p className="mt-0">
+            <p className="mt-1">
               {step > 2 ? <CheckIcon className="text-white stroke-white" /> : 2}
             </p>
           </div>
@@ -45,7 +45,7 @@ const Stepper = ({ step, submitted }: StepperProps) => {
               "bg-primary text-white border-none": step > 2,
             })}
           >
-            <p className="mt-0">
+            <p className="mt-1">
               {submitted ? (
                 <CheckIcon className="text-white stroke-white" />
               ) : (

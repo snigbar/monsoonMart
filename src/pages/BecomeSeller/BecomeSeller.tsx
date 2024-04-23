@@ -16,7 +16,10 @@ import {
   bankDataUrl,
   TLocationApiResponse,
 } from "./BecomeSeller.interface";
-import { useFetchBDLocationsQuery } from "@/store/slices/BecomeSeller/becomeSeller.api";
+import {
+  useFetchBDLocationsQuery,
+  useGetSellerWithUserIdQuery,
+} from "@/store/slices/BecomeSeller/becomeSeller.api";
 import { useAppDispatch } from "@/store/hooks/hooks";
 import { setLoading } from "@/store/slices/AuthSlice/auth.slice";
 
@@ -30,6 +33,11 @@ const BecomeSeller = () => {
   const [banks, setBanks] = useState<null | BankData[]>(null);
   const { data, isLoading, isSuccess, refetch } =
     useFetchBDLocationsQuery(cityInfoUrl);
+  const {
+    data: seller,
+    isSuccess: success,
+    isLoading: loading,
+  } = useGetSellerWithUserIdQuery("");
   const dispatch = useAppDispatch();
 
   const formMethods = useForm<TSellerFormSchema>({
@@ -73,12 +81,12 @@ const BecomeSeller = () => {
   }, [data, isSuccess]);
 
   useEffect(() => {
-    if (isLoading) {
+    if (isLoading || loading) {
       dispatch(setLoading(true));
     } else {
       dispatch(setLoading(false));
     }
-  }, [isLoading]);
+  }, [isLoading, loading]);
 
   // fetch bank data
 
@@ -132,6 +140,15 @@ const BecomeSeller = () => {
     }
   };
 
+  if (success && seller) {
+    return (
+      <div className="w-full md:w-11/12 lg:w-4/5 mx-auto mt-4 bg-white shadow-md p-4 rounded-md">
+        <p className="text-lg font-semibold text-center">
+          You already have requested to become a seller
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="w-full md:w-11/12 lg:w-4/5 mx-auto mt-4 bg-white shadow-md p-4 rounded-md">
       {/* stepper */}
