@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Auth/Login";
 import HomePage from "./pages/HomePage/HomePage";
 import MainLayout from "./layouts/MainLayout";
@@ -14,6 +14,10 @@ import BecomeSeller from "./pages/BecomeSeller/BecomeSeller";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AddProduct from "./pages/seller/AddProduct/AddProduct";
 import { LoadingSpinner } from "./components/ui/spinner";
+import DashboardLayout from "./layouts/DashboardLayout";
+
+import Dashboard from "./pages/Dashboard/Dashboard";
+import { sellerDashboardItems } from "./constants/seller.constants";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -102,16 +106,34 @@ function App() {
           }
         />
 
+        {/* seller dashboard */}
         <Route
-          path="/add-product"
+          path="/dashboard/seller"
           element={
-            <ProtectedRoute role={["user"]}>
-              <MainLayout>
+            <ProtectedRoute role={["seller"]}>
+              <DashboardLayout>
+                <Dashboard DashboardData={sellerDashboardItems} />
+              </DashboardLayout>
+            </ProtectedRoute>
+          }
+        >
+          {sellerDashboardItems.map((val, idx) => (
+            <Route key={idx} path={val.route} element={val.element} />
+          ))}
+        </Route>
+
+        <Route
+          path="/dashboard/admin"
+          element={
+            <ProtectedRoute role={["admin"]}>
+              <DashboardLayout>
                 <AddProduct></AddProduct>
-              </MainLayout>
+              </DashboardLayout>
             </ProtectedRoute>
           }
         />
+
+        <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </BrowserRouter>
   );

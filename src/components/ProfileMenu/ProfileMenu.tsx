@@ -4,7 +4,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuItem,
-  DropdownMenuLabel,
+  // DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "../ui/dropdown-menu";
 import { useAppDispatch, useAppSelector } from "@/store/hooks/hooks";
@@ -39,17 +39,26 @@ const ProfileMenu = () => {
         <PersonIcon className="w-8 h-8" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-60 mr-4 mt-2">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <Link to="/">Home</Link>
+        </DropdownMenuItem>
+        {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
         <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
 
         {/* become seller  */}
         {user?.role === "user" && (
           <>
-            <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Link to="/become-seller">Become Seller</Link>
+            </DropdownMenuItem>
+          </>
+        )}
+
+        {user?.role === "seller" && (
+          <>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link to="/dashboard/seller">Dashboard</Link>
             </DropdownMenuItem>
           </>
         )}

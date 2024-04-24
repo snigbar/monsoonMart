@@ -1,4 +1,22 @@
 import { categories } from "@/constants/categories.constants";
+import { TDashboardElement } from "@/interfaces/interfaces";
+import Analytics from "@/pages/seller/SellerDashboard/Analytics/Analytics";
+import DashboardRoot from "@/pages/seller/SellerDashboard/DashboardRoot/DashboardRoot";
+import MyProducts from "@/pages/seller/SellerDashboard/MyProducts/MyProducts";
+import Orders from "@/pages/seller/SellerDashboard/Orders/Orders";
+import Profile from "@/pages/seller/SellerDashboard/Profile/Profile";
+import Promotions from "@/pages/seller/SellerDashboard/Promotions/Promotions";
+import Reviews from "@/pages/seller/SellerDashboard/Reviews/Reviews";
+import SellerChats from "@/pages/seller/SellerDashboard/SellerChats/SellerChats";
+import {
+  BackpackIcon,
+  BarChartIcon,
+  ChatBubbleIcon,
+  DashboardIcon,
+  PersonIcon,
+  ReaderIcon,
+  TargetIcon,
+} from "@radix-ui/react-icons";
 
 export const brandArrays = categories.map((category) => {
   switch (category.name) {
@@ -571,3 +589,71 @@ export const brandArrays = categories.map((category) => {
       return { category: category.name, brands: ["Other"] };
   }
 });
+
+const iconClass = "h-5 w-5";
+export const sellerDashboardItems: TDashboardElement[] = [
+  {
+    routeName: "Dashboard",
+    route: "/dashboard/seller",
+    element: <DashboardRoot />,
+    icon: <DashboardIcon className={iconClass} />,
+  },
+  {
+    routeName: "Products",
+    route: "/dashboard/seller/products",
+    element: <MyProducts />,
+    icon: <BackpackIcon className={iconClass} />,
+  },
+  {
+    routeName: "Orders",
+    route: "/dashboard/seller/orders",
+    element: <Orders />,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className={iconClass}
+      >
+        {" "}
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+        />{" "}
+      </svg>
+    ),
+  },
+  {
+    routeName: "Analytics",
+    route: "/dashboard/seller/analytics",
+    element: <Analytics />,
+    icon: <BarChartIcon className={iconClass} />,
+  },
+  {
+    routeName: "Promotions", // Optional
+    route: "/dashboard/seller/promotions",
+    element: <Promotions />,
+    icon: <TargetIcon className={iconClass} />,
+  },
+  {
+    routeName: "Reviews", // Optional
+    route: "/dashboard/seller/reviews",
+    element: <Reviews />,
+    icon: <ReaderIcon className={iconClass} />,
+  },
+  {
+    routeName: "Chat", // Optional
+    route: "/dashboard/seller/chat",
+    element: <SellerChats />,
+    icon: <ChatBubbleIcon className={iconClass} />,
+  },
+  {
+    routeName: "Profile",
+    route: "/dashboard/seller/profile",
+    element: <Profile />,
+    icon: <PersonIcon className={iconClass} />,
+  },
+];
